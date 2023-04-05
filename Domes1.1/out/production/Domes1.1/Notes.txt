@@ -1,0 +1,8 @@
+TO DO:
+1. Make method to check if key exists in FILE1 in order to DRY!
+2.
+3. Make initialization method for binary files.
+4. Make javaDocs.
+
+TO REMEMBER/HINTS:
+1.

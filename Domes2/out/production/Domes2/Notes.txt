@@ -1,0 +1,11 @@
+TO-DO:
+1. Git + GitHub
+2. Create a rectangle class and fix the coordinates of new regions in subdivide (see NE).
+
+Links:
+1. BST code implemented for KdTree: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+2. Search in BST: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
+3. Random values generation see previous project
+4. Random Generator (nextInt()): https://docs.oracle.com/javase/8/docs/api/java/util/Random.html#nextDouble--
+5. MultiCounter from lectures.
+6. Wikipedia quadTree: https://en.wikipedia.org/wiki/Quadtree
