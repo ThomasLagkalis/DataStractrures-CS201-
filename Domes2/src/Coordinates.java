@@ -1,4 +1,4 @@
-/**
+/*
  * This is a class representing the coordinates pair (x,y).
  */
 public class Coordinates {

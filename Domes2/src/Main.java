@@ -6,7 +6,8 @@ public class Main {
     static final int N_MAX = 65536;//2^16
     static final int TEST_CASES = 100;
     public static void main(String[] args) {
-        System.out.println("M     successions(depth)       failed(depth)");
+        System.out.printf("%30s %42s \n\n", "Kd Tree", "PR Quad Tree");
+        System.out.printf("%6s \t\t%-20s %-15s|   %-20s %-15s\n", "M", "successions(depth)", "failed(depth)", "successions(depth)", "failed(depth)");
         for (int m: M){
             Coordinates[] keys = generateCoordinates(m);
             Coordinates[] existingKeys = generateExistingCoordinates(TEST_CASES, keys);
@@ -19,7 +20,6 @@ public class Main {
                 insertions[i] = qTree.insert(keys[i]);
             }
             int[] depth = new int[4];
-            int x1=0, x2=0;
             for (int i=0; i<TEST_CASES; i++){
                 // Searches for kd Tree.
                 KdTree.Node result1 = kdTree.search(existingKeys[i]);
@@ -37,17 +37,14 @@ public class Main {
                 depth[3] += MultiCounter.getCount(2);
                 MultiCounter.resetCounter(2);
 
-                if (search1 != null) x1++;
-                if (search2 != null) x2++;
-
             }
-            //System.out.println(x1 + "  " + x2);
-            System.out.println(m+"      "+depth[0]/(float)TEST_CASES + "                 "+ depth[1]/(float)TEST_CASES + m+"      "+depth[2]/(float)TEST_CASES + "                 "+ depth[3]/(float)TEST_CASES );
+            System.out.printf("%6d \t\t\t %-18.2f %-12.2f| %12.2f %17.2f \n" , m , depth[0]/(float)TEST_CASES , depth[1]/(float)TEST_CASES , depth[2]/(float)TEST_CASES , depth[3]/(float)TEST_CASES);
+            //System.out.println(m+"      "+depth[0]/(float)TEST_CASES + "                 "+ depth[1]/(float)TEST_CASES + m+"      "+depth[2]/(float)TEST_CASES + "                 "+ depth[3]/(float)TEST_CASES );
         }
     }
 
     public static Coordinates[] generateNonExistingCoordinates(int n, Coordinates[] coordinates){
-        /**
+        /*
          * This method produces (pseudo)random coordinates which don't exist in the program.
          * @param  n number of pseudo random coordinates to produce.
          * @return Coordinates array randomly produced.
@@ -68,7 +65,7 @@ public class Main {
         return keys;
     }
     public static Coordinates[] generateExistingCoordinates(int n, Coordinates[] coordinates){
-        /**
+        /*
          * @param n number of coordinates to return.
          * @param coordinates generate random coordinates existing in coordinates[] array.
          * @return the random array of existing coordinates.
@@ -82,7 +79,7 @@ public class Main {
         return keys;
     }
     public static Coordinates[] generateCoordinates(int n) {
-        /**
+        /*
          * @param n (number) of random instances to generate.
          * @return Coordinates array with random values.
          */

@@ -1,6 +1,5 @@
 TO-DO:
-1. Git + GitHub
-2. Create a rectangle class and fix the coordinates of new regions in subdivide (see NE).
+
 
 Links:
 1. BST code implemented for KdTree: https://www.geeksforgeeks.org/binary-search-tree-set-1-search-and-insertion/
