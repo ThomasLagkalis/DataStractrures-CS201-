@@ -1,7 +1,7 @@
 public class BpTree<Key extends Comparable<Key>, Value> {
     // max children per B-tree node = M-1
     // (must be even and greater than 2)
-    private static final int M = 10;
+    private static final int M = 20;
 
     private Node root;       // root of the B-tree
     private int height;      // height of the B-tree
@@ -81,11 +81,13 @@ public class BpTree<Key extends Comparable<Key>, Value> {
     }
 
     private Value search(Node x, Key key, int ht) {
+        MultiCounter.increaseCounter(1);
         Entry[] children = x.children;
 
         // external node
         if (ht == 0) {
             for (int j = 0; j < x.m; j++) {
+                MultiCounter.increaseCounter(2);
                 if (eq(key, children[j].key)) {return (Value) children[j].val;}
             }
         }
@@ -93,6 +95,7 @@ public class BpTree<Key extends Comparable<Key>, Value> {
         // internal node
         else {
             for (int j = 0; j < x.m; j++) {
+                MultiCounter.increaseCounter(2);
                 if (j + 1 == x.m || less(key, children[j + 1].key))
                     return search(children[j].next, key, ht - 1);
             }

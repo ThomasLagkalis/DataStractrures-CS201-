@@ -18,13 +18,13 @@ public class MyUtils {
      * @param arr2 the second array to merge
      * @return a bigger array containing the elements of arr1 and arr2 or null if either of two arrays is null
      */
-    public static Object[] concatanateArrays(Object[] arr1, Object[] arr2){
+    public static <T> T[] concatanateArrays(T[] arr1, T[] arr2){
         if (arr1 == null || arr2 == null) return null;
-        Object[] arrTotal = new Object[arr1.length + arr2.length];
+        T[] arrTotal = (T[]) new Object[arr1.length + arr2.length];
         System.arraycopy(arr1, 0, arrTotal, 0, arr1.length);
-        System.arraycopy(arr2, 0, arrTotal, arr2.length + 0, arr2.length);
+        System.arraycopy(arr2, 0, arrTotal, arr2.length, arr2.length);
 
-        return arrTotal;
+        return (T[]) arrTotal;
     }
 
     /**
@@ -34,13 +34,13 @@ public class MyUtils {
      * @param n The number of elements to choose. Must be 0<n<=arr.length
      * @return an array of n elements chosen randomly from arr or null if n is bigger than the sizeof arr
      */
-    public static Object[] randomElementsOfArray(Object[] arr, int n){
+    public static <T> T[] randomElementsOfArray(T[] arr, int n){
         if (n> arr.length) return null;
         else {
-            Object[] generatedArr = new Object[n];
+            T[] generatedArr = (T[]) new Object[n];
             Random randomGenerator = new Random();
-            for (int i=0; i<n; i++) generatedArr[i] = arr[randomGenerator.nextInt()];
-            return generatedArr;
+            for (int i=0; i<n; i++) generatedArr[i] = arr[randomGenerator.nextInt(arr.length)];
+            return (T[]) generatedArr;
         }
     }
 

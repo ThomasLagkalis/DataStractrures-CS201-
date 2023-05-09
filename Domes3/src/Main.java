@@ -17,13 +17,24 @@ public class Main {
         insertTree(words2, FILE2, bpTree);
 
         //generate 50 existing random words from each file
-        String[] arr1 = (String[]) MyUtils.randomElementsOfArray(words1, 50);
-        String[] arr2 = (String[]) MyUtils.randomElementsOfArray(words2, 50);
+        Object[] arr1 = MyUtils.randomElementsOfArray(words1, 50);
+        Object[] arr2 = MyUtils.randomElementsOfArray(words2, 50);
+        Object[] testCases = MyUtils.concatanateArrays(arr1, arr2);
 
-        String[] testCases = (String[]) MyUtils.concatanateArrays(arr1, arr2);
+        //Counter 1 --> number of nodes accesses
+        //Counter 2 --> number of comparisons
+        MultiCounter.resetCounter(1);
+        MultiCounter.resetCounter(2);
 
+        for (int i=0; i<testCases.length; i++) bpTree.get((String) testCases[i]);
 
+        //Get averages
+        float avgAccesses = (float) (MultiCounter.getCount(1)/100.0);
+        float avgComparisons = (float) (MultiCounter.getCount(2)/100.0);
 
+        System.out.println("M=20");
+        System.out.println("Average Accesses = "+avgAccesses);
+        System.out.println("Average Comparisons = "+avgComparisons);
     }
 
 
