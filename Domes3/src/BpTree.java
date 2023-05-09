@@ -1,7 +1,7 @@
-public class BTree<Key extends Comparable<Key>, Value> {
+public class BpTree<Key extends Comparable<Key>, Value> {
     // max children per B-tree node = M-1
     // (must be even and greater than 2)
-    private static final int M = 4;
+    private static final int M = 10;
 
     private Node root;       // root of the B-tree
     private int height;      // height of the B-tree
@@ -35,7 +35,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
     /**
      * Initializes an empty B-tree.
      */
-    public BTree() {
+    public BpTree() {
         root = new Node(0);
     }
 
@@ -86,7 +86,7 @@ public class BTree<Key extends Comparable<Key>, Value> {
         // external node
         if (ht == 0) {
             for (int j = 0; j < x.m; j++) {
-                if (eq(key, children[j].key)) return (Value) children[j].val;
+                if (eq(key, children[j].key)) {return (Value) children[j].val;}
             }
         }
 
