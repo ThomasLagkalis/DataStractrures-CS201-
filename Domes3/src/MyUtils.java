@@ -49,14 +49,29 @@ public class MyUtils {
      * @param fileName a string with the name of the file
      * @return an array of strings with the words in the file
      */
-    public static String[] splitToWords(String fileName){
+    public static String[] splitFileToWords(String fileName){
         Vector<String> words = new Vector<String>();
         int coountWords = 0;
         try {
             Scanner sc = new Scanner(new File(fileName));
             while (sc.hasNext()){words.add(sc.next()); coountWords++;}
             return words.toArray(new String[coountWords]);
-        } catch (FileNotFoundException e) {throw new RuntimeException(e);}
+        } catch (FileNotFoundException e) {System.out.println("File not found");}
+        return null;
+    }
 
+
+    /**
+     *
+     * @param s the string to split to words.
+     * @return an array of string with the words of the s
+     *
+     */
+    public static String[] splitToWords(String s){
+        Vector<String> words = new Vector<String>();
+        int coountWords = 0;
+        Scanner sc = new Scanner(s);
+        while (sc.hasNext()){words.add(sc.next()); coountWords++;}
+        return words.toArray(new String[coountWords]);
     }
 }
