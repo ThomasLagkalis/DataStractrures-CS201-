@@ -1,7 +1,7 @@
 public class BpTree<Key extends Comparable<Key>, Value> {
     // max children per B-tree node = M-1
     // (must be even and greater than 2)
-    private static final int M = 20;
+    static int M;
 
     private Node root;       // root of the B-tree
     private int height;      // height of the B-tree
@@ -35,8 +35,19 @@ public class BpTree<Key extends Comparable<Key>, Value> {
     /**
      * Initializes an empty B-tree.
      */
+    public BpTree(int M) {
+        this.M = M;
+        root = new Node(0);
+    }
+
+    //Default order of B+Tree is 10.
     public BpTree() {
         root = new Node(0);
+        M = 10;
+    }
+
+    public int getOrder(){
+        return M;
     }
 
     /**

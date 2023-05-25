@@ -8,9 +8,17 @@ import java.util.Scanner;
 public class Menu {
 
     static BpTree tree;
+    static BpTree testTree1;
+    static BpTree testTree2;
 
-    //Constructors
+    //Constructors. Creates two tries for test method and inserts the 1.txt and 2.txt in each tree.
     public Menu(){
+        testTree1 = new BpTree<String, String>(10);
+        insertFile("1.txt", testTree1);
+        insertFile("2.txt", testTree1);
+        testTree2 = new BpTree<String, String>(20);
+        insertFile("1.txt", testTree2);
+        insertFile("2.txt", testTree2);
         tree = new BpTree<String, String>();
     }
 
@@ -31,7 +39,7 @@ public class Menu {
                 case 2 -> {
                     if (myScanner.hasNext()) {
                         input = myScanner.next();
-                        insertFile(input);
+                        insertFile(input, tree);
                     }else System.out.println("Missing argument");
                 }
                 case 3 -> {
@@ -41,7 +49,7 @@ public class Menu {
                     }else System.out.println("Missing argument");
                 }
                 case 4 -> {
-                    System.out.println("Commands:\n\ttest - Performs 100 searches with random words from 1.txt and 2.txt and prints results.\n");
+                    System.out.println("Commands:\n\ttest - Performs 100 searches -with a tree of order 10 and a tree of order 20- with random words from 1.txt and 2.txt and prints results.\n");
                     System.out.println("\tinsert <file name> - Inserts all the words of <file name> in the B+Tree.\n");
                     System.out.println("\tsearch <word> - Searches for <word> in the B+Tree and prints the results if exist.\n");
                     System.out.println("\tquit");
@@ -99,13 +107,27 @@ public class Menu {
         MultiCounter.resetCounter(2);
 
         assert testCases != null;
-        for (Object testCase : testCases) tree.get((String) testCase);
+        for (Object testCase : testCases) testTree1.get((String) testCase);
 
         //Get averages
         float avgAccesses = (float) (MultiCounter.getCount(1)/100.0);
         float avgComparisons = (float) (MultiCounter.getCount(2)/100.0);
 
-        System.out.println("M=20");
+        System.out.println("M= " + testTree1.getOrder());
+        System.out.println("Average Nodes Accesses = "+avgAccesses);
+        System.out.println("Average Comparisons = "+avgComparisons);
+
+        MultiCounter.resetCounter(1);
+        MultiCounter.resetCounter(2);
+
+        assert testCases != null;
+        for (Object testCase : testCases) testTree2.get((String) testCase);
+
+        //Get averages
+        avgAccesses = (float) (MultiCounter.getCount(1)/100.0);
+        avgComparisons = (float) (MultiCounter.getCount(2)/100.0);
+
+        System.out.println("\nM= " + testTree2.getOrder());
         System.out.println("Average Nodes Accesses = "+avgAccesses);
         System.out.println("Average Comparisons = "+avgComparisons);
     }
@@ -124,13 +146,14 @@ public class Menu {
 
     /**
      * Inserts the words of a file in the B+Tree
+     * @param tr the tree in which file keys will be inserted
      * @param fileName the name of the file
      */
-    private static void insertFile(String fileName){
+    private static void insertFile(String fileName, BpTree tr){
         // Split the file into String array containing the words of the file.
         String[] words = MyUtils.splitFileToWords(fileName);
         // Insert the words in the tree.
-        insertTree(words, fileName, tree);
+        insertTree(words, fileName, tr);
     }
 
 
